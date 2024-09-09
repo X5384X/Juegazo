@@ -9,12 +9,24 @@
 <body>
     <div class="grid-container">
         <section class="health-bars">
-            <progress class="p1-health" max="100" value="100"></progress>
-            <progress class="p2-health" max="100" value="100"></progress>
+            <div class="jugador1 info">
+                <h1>Jugador 1</h1>
+                <progress class="p1-health" max="100" value="50"></progress>
+            </div>
+            <div class="jugador2 info">
+                <h1>Jugador 2</h1>
+                <progress class="p2-health" max="100" value="100"></progress>
+            </div>
         </section>
         <section class="field">
-            <img src="img/commando.jpg" alt="commando">
-            <img src="img/commando2.jpg" alt="commando2">
+            <div class="player pj1">
+                <img class="sprite-pj1" src="img/commando.jpg" alt="commando">
+                <button type="submit">Disparar</button>
+            </div>
+            <div class="player pj2">
+                <img class="sprite-pj1" src="img/commando2.jpg" alt="commando2">
+                <button type="submit">Disparar</button>
+            </div>
         </section>
     </div>
 </body>

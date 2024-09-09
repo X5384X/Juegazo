@@ -9,16 +9,31 @@ body{
         display: flex;
         width: 100%;
         justify-content: space-between;
+        .info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        progress{
+            background: red;
+        }
         .p1-health{
-            width: 30%;
+            width: 100%;
         }
         .p2-health{
-            width: 30%;
+            width: 100%;
         }
     }
     .field{
         display: flex;
         justify-content: space-between;
-        padding: 20px 50px 0px;
+        padding: 40px 100px 0px;
+
+        .player{
+            display: flex;
+            row-gap: 20px;
+            flex-direction: column;
+        }
     }
 }
