@@ -1,5 +1,5 @@
 body{
-
+    margin: 0px 0px 0px 0px;
 }
 
 .grid-container{
@@ -9,31 +9,53 @@ body{
         display: flex;
         width: 100%;
         justify-content: space-between;
+        background-color: #f0f0f0;
         .info{
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
-        }
-        progress{
-            background: red;
-        }
-        .p1-health{
-            width: 100%;
-        }
-        .p2-health{
-            width: 100%;
+            column-gap: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            .p1-health, .p2-health{
+                display: flex;
+                background-color: red;
+                width: 300px;
+                height: 30px;
+                .p1-remaining{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: GREEN;
+                    width: inherit;
+                    height: inherit;
+                }
+                .p2-remaining{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: GREEN;
+                    width: inherit;
+                    height: inherit;
+                }
+            }
+            h3{
+                text-align: center;
+            }
+            h1{
+                font-family: Arial, Helvetica, sans-serif
+            }
         }
     }
     .field{
         display: flex;
         justify-content: space-between;
-        padding: 40px 100px 0px;
 
         .player{
             display: flex;
-            row-gap: 20px;
             flex-direction: column;
+            row-gap: 20px;
         }
     }
 }

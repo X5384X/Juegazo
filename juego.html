@@ -7,15 +7,27 @@
     <title>Juego Disparo</title>
 </head>
 <body>
+    <script src="js/juego.js"></script>
     <div class="grid-container">
         <section class="health-bars">
             <div class="jugador1 info">
                 <h1>Jugador 1</h1>
-                <progress class="p1-health" max="100" value="50"></progress>
+                <div class="p1-health">
+                    <div class="p1-remaining">
+                    </div>
+                </div>
+                <h3 class="p1-num">130/130</h3>
+            </div>
+            <div class="timer">
+                <h2>00:00</h2>
             </div>
             <div class="jugador2 info">
+                <h3 class="p2-num">150/150</h3>
+                <div class="p2-health">
+                    <div class="p2-remaining">
+                    </div>
+                </div>
                 <h1>Jugador 2</h1>
-                <progress class="p2-health" max="100" value="100"></progress>
             </div>
         </section>
         <section class="field">
