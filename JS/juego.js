@@ -24,5 +24,22 @@ class Character {
     status() {
       return `${this.name} - HP ${this.health}/${this.maxhealth}`;
     }
+
+    getName(){
+        return `${this.name}`;
+    }
+
+    getHealth(){
+        return `${this.health}`;
+    }
 }
+
+const player1 = new Character("Jugador 1", 130, 5);
+const player2 = new Character("Jugador 2", 150, 10);
+
+console.log(player1);
+console.log(player2);
+
+document.getElementById("nombre-p1").innerHTML = player1.getName();
+document.getElementById("nombre-p2").innerHTML = player2.getName();
 
