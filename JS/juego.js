@@ -1,51 +1,66 @@
-//Logica del juego
-
-//Constructor de los Jugadores
-class Character {
-    constructor(name, health, damage) {
-      //Atributos
-      this.name = name;
-      this.health = health;
-      this.maxhealth = health;
-      this.damage = damage;
+//Objeto Jugador -- Listo
+class Player {
+    constructor(name, health, damage, posX, posY) {
+        this.name = name;
+        this.health = health;
+        this.maxhealth = health;
+        this.damage = damage;
+        this.x = posX;
+        this.y = posY;
     }
+
     //Verifica si el personaje esta vivo
     isAlive() {
-      return this.health > 0;
-    }
-  
-    //Ataca a otro personaje seleccionado
-    attack(target) {
-      console.log(`${this.name} inflige ${this.damage} de daño a ${target.name}`);
-      target.health -= this.damage;
-    }
-  
-    //Retorna la información actual del personaje
-    status() {
-      return `${this.name} - HP ${this.health}/${this.maxhealth}`;
+        return this.health > 0;
     }
 
-    getName(){
+    //Retorna la información actual del personaje
+    status() {
+        return `${this.name} - HP ${this.health}/${this.maxhealth}`;
+    }
+
+    getName() {
         return `${this.name}`;
     }
 
-    getHealth(){
+    getHealth() {
         return `${this.health}`;
     }
+
+    setX(posX){
+        this.x = posX;
+    }
+    getX(){
+        return `${this.x}`;
+    }
+    setY(posY){
+        this.y = posY;
+    }
+    getY(){
+        return `${this.y}`;
+    }
 }
-
-//Movimiento -- Por Hacer
-
-
-
-//Fisicas Bala -- Por Hacer
-
-const player1 = new Character("Jugador 1", 130, 5);
-const player2 = new Character("Jugador 2", 150, 10);
-
-console.log(player1);
-console.log(player2);
+const player1 = new Player("Jugador 1", 130, 5, Math.floor(Math.random() * 300), Math.floor(Math.random() * 300));
+const player2 = new Player("Jugador 2", 150, 10, Math.floor(Math.random() * 300), Math.floor(Math.random() * 300));
 
 document.getElementById("nombre-p1").innerHTML = player1.getName();
 document.getElementById("nombre-p2").innerHTML = player2.getName();
 
+console.log(player1);
+console.log(player2);
+
+//Logica del juego -- En Progreso
+
+
+  //Movimiento -- En Progreso
+function movement(dir){
+    onkeydown = (key) =>{
+        
+    } 
+}
+
+  //Disparo -- Por Hacer
+
+
+
+//Fisicas Bala -- Por Hacer
