@@ -34,6 +34,12 @@ class Character {
     }
 }
 
+//Movimiento -- Por Hacer
+
+
+
+//Fisicas Bala -- Por Hacer
+
 const player1 = new Character("Jugador 1", 130, 5);
 const player2 = new Character("Jugador 2", 150, 10);
 

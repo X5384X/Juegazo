@@ -35,7 +35,7 @@ body{
                 .p1-remaining{
                     display: flex;
                     background-color: GREEN;
-                    width: 200px;
+                    width: inherit;
                     height: inherit;
                 }
             }
@@ -48,7 +48,7 @@ body{
                 .p2-remaining{
                     display: flex;
                     background-color: GREEN;
-                    width: 200px;
+                    width: inherit;
                     height: inherit;
                 }
             }
@@ -66,8 +66,6 @@ body{
 
         .player{
             display: flex;
-            flex-direction: column;
-            row-gap: 20px;
         }
     }
 }
