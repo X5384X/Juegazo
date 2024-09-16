@@ -38,6 +38,8 @@ class Character {
 
 const pantalla = document.getElementById("pantallaJuego");
 const pantallaxt = pantalla.getContext("pantalla");
+document.addEventListener("keydown", keyDown, false);
+document.addEventListener("keyup", keyUp, false);
 
 //Movimiento Player 1
 
@@ -52,6 +54,30 @@ let player2Up = false;
 let player2Left = false;
 let player2Right = false;
 let player2Down = false;
+
+// Handlers
+
+function keyDown(e) {
+  if (e.code == "KeyW") player1Up = true;
+  if (e.code == "KeyA") player1Left = true;
+  if (e.code == "KeyD") player1Right = true;
+  if (e.code == "KeyS") player1Down = true;
+  if (e.code == "KeyI") player2Up = true;
+  if (e.code == "KeyJ") player2Left = true;
+  if (e.code == "KeyL") player2Right = true;
+  if (e.code == "KeyK") player2Down = true;
+}
+
+function keyUp(e) {
+  if (e.code == "KeyW") player1Up = false;
+  if (e.code == "KeyA") player1Left = false;
+  if (e.code == "KeyD") player1Right = false;
+  if (e.code == "KeyS") player1Down = false;
+  if (e.code == "KeyI") player2Up = false;
+  if (e.code == "KeyJ") player2Left = false;
+  if (e.code == "KeyL") player2Right = false;
+  if (e.code == "KeyK") player2Down = false;
+}
 
 //Fisicas Bala -- Por Hacer
 
