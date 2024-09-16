@@ -79,6 +79,40 @@ function keyUp(e) {
   if (e.code == "KeyK") player2Down = false;
 }
 
+function drawPlayer1() {
+  pantallaxt.clearRect(0, 0, pantalla.width, pantalla.height);
+  if (player1Up) {
+    player1Y += 5;
+  } else if (player1Down) {
+    player1Y -= 5;
+  }
+  if (player1Right) {
+    player1X += 5;
+  } else if (player1Left) {
+    player1X -= 5;
+  }
+
+  pantallaxt.drawImage(img1, player1X, player1Y);
+  requestAnimationFrame(draw);
+}
+
+function drawPlayer2() {
+  pantallaxt.clearRect(0, 0, pantalla.width, pantalla.height);
+  if (player2Up) {
+    player2Y += 5;
+  } else if (player2Down) {
+    player2Y -= 5;
+  }
+  if (player2Right) {
+    player2X += 5;
+  } else if (player2Left) {
+    player2X -= 5;
+  }
+
+  pantallaxt.drawImage(img2, player2X, player2Y);
+  requestAnimationFrame(draw);
+}
+
 //Fisicas Bala -- Por Hacer
 
 const player1 = new Character("Jugador 1", 130, 5);
