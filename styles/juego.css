@@ -61,17 +61,22 @@
 
 .player {
   width: 50px;
-  height: 50px;
-  background-color: red;
+  height: 200px;
   position: absolute;
+  background-color: aqua;
+  background-repeat: no-repeat;
 }
 
 #player-1 {
   left: 100px;
   top: 150px;
+  background-image: url(../img/commando.png);
+  background-size: 100%;
 }
 
 #player-2 {
   left: 100px;
   top: 150px;
+  background-image: url(../img/commando2.png);
+  background-size: 100%;
 }

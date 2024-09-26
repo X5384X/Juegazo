@@ -55,7 +55,53 @@ const player2 = new Player(
   Math.floor(Math.random() * 300)
 );
 
-//Movimiento
+//Fisicas Bala -- Listo
+
+class Bullet {
+  constructor(x, y, direccion) {
+    this.x = x;
+    this.y = y;
+    this.direccion = direccion;
+    this.speed = 5;
+  }
+
+  mover() {
+    this.x = this.speed * this.direccion;
+  }
+
+  mostrar() {
+    const bala = document.createElement("div");
+    bala.classList.add("bala");
+    bala.style.left = this.x + "px";
+    bala.style.top = this.y + "px";
+    document.querySelector(".game-area").appendChild(bala);
+    return bala;
+  }
+}
+
+let balas = [];
+
+function disparo(player, num) {
+  const bala = new Bullet(player.x, player.y, num);
+  const balaDisparada = bala.mostrar();
+  balas.push({ bala, element: balaDisparada });
+}
+
+function actualizarBala() {
+  balas.forEach((balaObj, index) => {
+    balaObj.bala.mover();
+    balaObj.element.style.left = balaObj.bala.x + "px";
+
+    if (balaObj.bala.x > window.innerWidth || balaObj.bala.x < 0) {
+      balaObj.element.remove();
+      balas.splice(index, 1);
+    }
+  });
+  requestAnimationFrame(actualizarBala);
+}
+actualizarBala();
+
+// Mecanicas Juego -- En Progreso
 
 const playerSpeed = 5;
 const player_1 = document.getElementById("player-1");
@@ -82,7 +128,7 @@ function update() {
     player1Pos.x += playerSpeed;
   }
   if (keys["f"]) {
-    bulletShot();
+    disparo(player1, 1);
   }
 
   if (keys["i"] && player2Pos.y > 0) {
@@ -98,7 +144,7 @@ function update() {
     player2Pos.x += playerSpeed;
   }
   if (keys["h"]) {
-    bulletShot();
+    disparo(player2, -1);
   }
   player_1.style.left = `${player1Pos.x}px`;
   player_1.style.top = `${player1Pos.y}px`;
@@ -116,79 +162,14 @@ window.addEventListener("keydown", (e) => {
 window.addEventListener("keyup", (e) => {
   keys[e.key.toLowerCase()] = false;
 });
-//Fisicas Bala -- Por Hacer
 
 /*const player1 = new Character("Jugador 1", 130, 5);
 const player2 = new Character("Jugador 2", 150, 10); */
-
-console.log(player1);
-console.log(player2);
 
 update();
 
 console.log(player1);
 console.log(player2);
-
-//Logica del juego -- En Progreso
-
-//Fisicas Bala -- Por Hacer
-class Bullet {
-  constructor(x, y, direction) {
-    this.x = x;
-    this.y = y;
-    this.direccion = direccion;
-    this.speed = 5;
-  }
-
-  mover() {
-    this.x = this.speed * this.direccion;
-  }
-
-  mostrar() {
-    const bala = document.createElement("div");
-    bala.classList.add("bala");
-    bala.style.left = this.x + "px";
-    bala.style.top = this.y + "px";
-    document.querySelector(".field").appendChild(bala);
-    return bala;
-  }
-}
-
-let balas = [];
-
-function disparo(player, num) {
-  const bala = new Bullet(player.x, player.y, num);
-  const balaDisparada = bala.mostrar();
-  balas.push({ bala, element: balaDisparada });
-}
-
-//Disparo de Balas
-
-document.addEventListener("keydown", (event) => {
-  if (event.code === "f") {
-    disparoP1(player1, 1);
-  }
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.code === "h") {
-    disparoP1(player2, -1);
-  }
-});
-
-function actualizarBala() {
-  balas.forEach((balaObj, index) => {
-    balaObj.bala.mover();
-    balaObj.element.style.left = balaObj.bala.x + "px";
-
-    if (balaObj.bala.x > window.innerWidth || balaObj.bala.x < 0) {
-      balaObj.element.remove();
-      balas.splice(index, 1);
-    }
-  });
-  requestAnimationFrame(updateBullets);
-}
-actualizarBala();
 
 //Musica y SFX -- En Progreso
 
