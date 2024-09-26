@@ -1,71 +1,77 @@
-body{
-    margin: 0px 0px 0px 0px;
+.health-bars {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  .info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    .nombre #nombre-p1 {
+      justify-self: flex-start;
+      width: 125px;
+    }
+    .nombre #nombre-p2 {
+      justify-self: flex-end;
+      width: 125px;
+    }
+    .health {
+      display: flex;
+      justify-content: flex-start;
+      background-color: white;
+      width: 250px;
+      height: 30px;
+      .remaining {
+        display: flex;
+        background-color: GREEN;
+        width: inherit;
+        height: inherit;
+      }
+    }
+    .health {
+      display: flex;
+      justify-content: flex-end;
+      background-color: white;
+      width: 250px;
+      height: 30px;
+      .remaining {
+        display: flex;
+        background-color: GREEN;
+        width: inherit;
+        height: inherit;
+      }
+    }
+  }
 }
 
-.grid-container{
-    display: grid;
-    width: 100%;
-    .health-bars{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        background-color: #f0f0f0;
-        .info{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            column-gap: 20px;
-            padding-left: 20px;
-            padding-right: 20px;
-            .nombre #nombre-p1{
-                justify-self: flex-start;
-                width: 125px;
-            }
-            .nombre #nombre-p2{
-                justify-self: flex-end;
-                width: 125px;
-            }
-            .p1-health{
-                display: flex;
-                justify-content: flex-start;
-                background-color: white;
-                width: 250px;
-                height: 30px;
-                .p1-remaining{
-                    display: flex;
-                    background-color: GREEN;
-                    width: inherit;
-                    height: inherit;
-                }
-            }
-            .p2-health{
-                display: flex;
-                justify-content: flex-end;
-                background-color: white;
-                width: 250px;
-                height: 30px;
-                .p2-remaining{
-                    display: flex;
-                    background-color: GREEN;
-                    width: inherit;
-                    height: inherit;
-                }
-            }
-            h3{
-                text-align: center;
-            }
-            h1{
-                font-family: Arial, Helvetica, sans-serif;
-            }
-        }
-    }
-    .field{
-        display: flex;
-        justify-content: space-between;
+.game-area {
+  position: relative;
+  width: 1500px;
+  height: 750px;
+  background-color: #333;
+  border: 2px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-        .player{
-            display: flex;
-        }
-    }
+.player {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  position: absolute;
+}
+
+#player-1 {
+  left: 100px;
+  top: 150px;
+}
+
+#player-2 {
+  left: 100px;
+  top: 150px;
 }

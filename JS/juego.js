@@ -34,92 +34,71 @@ class Character {
   }
 }
 
-//Movimiento -- Por Hacer
+//Movimiento
 
-const pantalla = document.getElementById("pantallaJuego");
-const pantallaxt = pantalla.getContext("pantalla");
-document.addEventListener("keydown", keyDown, false);
-document.addEventListener("keyup", keyUp, false);
+const playerSpeed = 5;
+const player1 = document.getElementById("player-1");
+const player2 = document.getElementById("player-2");
 
-//Movimiento Player 1
-
-let player1Up = false;
-let player1Left = false;
-let player1Right = false;
-let player1Down = false;
-
-//Movimiento Player 2
-
-let player2Up = false;
-let player2Left = false;
-let player2Right = false;
-let player2Down = false;
+let player1Pos = { x: 100, y: 320 };
+let player2Pos = { x: 1300, y: 320 };
 
 // Handlers
 
-function keyDown(e) {
-  if (e.code == "KeyW") player1Up = true;
-  if (e.code == "KeyA") player1Left = true;
-  if (e.code == "KeyD") player1Right = true;
-  if (e.code == "KeyS") player1Down = true;
-  if (e.code == "KeyI") player2Up = true;
-  if (e.code == "KeyJ") player2Left = true;
-  if (e.code == "KeyL") player2Right = true;
-  if (e.code == "KeyK") player2Down = true;
-}
+const keys = {};
 
-function keyUp(e) {
-  if (e.code == "KeyW") player1Up = false;
-  if (e.code == "KeyA") player1Left = false;
-  if (e.code == "KeyD") player1Right = false;
-  if (e.code == "KeyS") player1Down = false;
-  if (e.code == "KeyI") player2Up = false;
-  if (e.code == "KeyJ") player2Left = false;
-  if (e.code == "KeyL") player2Right = false;
-  if (e.code == "KeyK") player2Down = false;
-}
-
-function drawPlayer1() {
-  pantallaxt.clearRect(0, 0, pantalla.width, pantalla.height);
-  if (player1Up) {
-    player1Y += 5;
-  } else if (player1Down) {
-    player1Y -= 5;
+function update() {
+  if (keys["w"] && player1Pos.y > 0) {
+    player1Pos.y -= playerSpeed;
   }
-  if (player1Right) {
-    player1X += 5;
-  } else if (player1Left) {
-    player1X -= 5;
+  if (keys["s"] && player1Pos.y < 700) {
+    player1Pos.y += playerSpeed;
+  }
+  if (keys["a"] && player1Pos.x > 0) {
+    player1Pos.x -= playerSpeed;
+  }
+  if (keys["d"] && player1Pos.x < 1450) {
+    player1Pos.x += playerSpeed;
   }
 
-  pantallaxt.drawImage(img1, player1X, player1Y);
-  requestAnimationFrame(draw);
-}
-
-function drawPlayer2() {
-  pantallaxt.clearRect(0, 0, pantalla.width, pantalla.height);
-  if (player2Up) {
-    player2Y += 5;
-  } else if (player2Down) {
-    player2Y -= 5;
+  if (keys["i"] && player2Pos.y > 0) {
+    player2Pos.y -= playerSpeed;
   }
-  if (player2Right) {
-    player2X += 5;
-  } else if (player2Left) {
-    player2X -= 5;
+  if (keys["k"] && player2Pos.y < 700) {
+    player2Pos.y += playerSpeed;
+  }
+  if (keys["j"] && player2Pos.x > 0) {
+    player2Pos.x -= playerSpeed;
+  }
+  if (keys["l"] && player2Pos.x < 1450) {
+    player2Pos.x += playerSpeed;
   }
 
-  pantallaxt.drawImage(img2, player2X, player2Y);
-  requestAnimationFrame(draw);
+  player1.style.left = `${player1Pos.x}px`;
+  player1.style.top = `${player1Pos.y}px`;
+
+  player2.style.left = `${player2Pos.x}px`;
+  player2.style.top = `${player2Pos.y}px`;
+
+  requestAnimationFrame(update);
 }
 
+window.addEventListener("keydown", (e) => {
+  keys[e.key.toLowerCase()] = true;
+});
+
+window.addEventListener("keyup", (e) => {
+  keys[e.key.toLowerCase()] = false;
+});
 //Fisicas Bala -- Por Hacer
 
-const player1 = new Character("Jugador 1", 130, 5);
-const player2 = new Character("Jugador 2", 150, 10);
+/*const player1 = new Character("Jugador 1", 130, 5);
+const player2 = new Character("Jugador 2", 150, 10); */
 
 console.log(player1);
 console.log(player2);
 
-document.getElementById("nombre-p1").innerHTML = player1.getName();
-document.getElementById("nombre-p2").innerHTML = player2.getName();
+update();
+
+/*document.getElementById("nombre-p1").innerHTML = player1.getName();
+document.getElementById("nombre-p2").innerHTML = player2.getName(); */

@@ -7,44 +7,23 @@
     <title>Juego Disparo</title>
   </head>
   <body>
-    <div class="grid-container">
-      <section class="health-bars">
-        <div class="jugador1 info">
-          <h1 id="nombre-p1" class="nombre"></h1>
-          <div class="p1-health">
-            <div class="p1-remaining"></div>
-          </div>
-          <h3 id="num-p1">130/130</h3>
+    <div class="healh-bars">
+      <div class="info player-1">
+        <div class="health-bar">
+          <div id="player-1-health" class="health"></div>
         </div>
-        <div class="timer">
-          <h2>00:00</h2>
+        <div class="name">Player 1</div>
+      </div>
+      <div class="info player-2">
+        <div class="health-bar">
+          <div id="player-2-health" class="health"></div>
         </div>
-        <div class="jugador2 info">
-          <h3 id="num-p2">150/150</h3>
-          <div class="p2-health">
-            <div class="p2-remaining"></div>
-          </div>
-          <h1 id="nombre-p2" class="nombre"></h1>
-        </div>
-      </section>
-      <section class="field">
-        <div class="player" id="pj1">
-          <img
-            id="sprite-pj1"
-            src="img/commando.jpg"
-            alt="commando"
-            style="width: 40px"
-          />
-        </div>
-        <div class="player" id="pj2">
-          <img
-            id="sprite-pj1"
-            src="img/commando2.jpg"
-            alt="commando2"
-            style="width: 40px"
-          />
-        </div>
-      </section>
+        <div class="name">Player 2</div>
+      </div>
+    </div>
+    <div class="game-area">
+      <div id="player-1" class="player"></div>
+      <div id="player-2" class="player"></div>
     </div>
     <script src="js/juego.js"></script>
   </body>
