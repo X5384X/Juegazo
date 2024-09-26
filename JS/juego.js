@@ -60,6 +60,9 @@ function update() {
   if (keys["d"] && player1Pos.x < 1450) {
     player1Pos.x += playerSpeed;
   }
+  if (keys["f"]) {
+    bulletShot();
+  }
 
   if (keys["i"] && player2Pos.y > 0) {
     player2Pos.y -= playerSpeed;
@@ -73,7 +76,9 @@ function update() {
   if (keys["l"] && player2Pos.x < 1450) {
     player2Pos.x += playerSpeed;
   }
-
+  if (keys["h"]) {
+    bulletShot();
+  }
   player1.style.left = `${player1Pos.x}px`;
   player1.style.top = `${player1Pos.y}px`;
 
