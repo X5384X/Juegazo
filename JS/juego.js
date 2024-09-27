@@ -1,5 +1,10 @@
 let juego = true;
 
+const musica = new Audio("../audio/Heaven Pierce Her - Versus.mp3");
+musica.currentTime = 0;
+musica.volume = 0.7;
+musica.play();
+
 //Objeto Jugador -- Listo
 class Player {
   constructor(name, health, damage, posX, posY) {
@@ -42,19 +47,21 @@ class Player {
     return `${this.y}`;
   }
 }
+const area = document.getElementById("area");
+console.log(document.getElementById("area").offsetWidth);
 const player1 = new Player(
   "Jugador 1",
   150,
   5,
-  (Math.floor(Math.random() * (700 - 0)) + 0),
-  (Math.floor(Math.random() * (700 - 0)) + 0)
+  (Math.floor(Math.random() * (((document.getElementById("area").offsetWidth/2)-50) - 0)) + 0),
+  (Math.floor(Math.random() * (document.getElementById("area").offsetHeight - 0)) + 0)
 );
 const player2 = new Player(
   "Jugador 2",
   150,
   5,
-  (Math.floor(Math.random() * (1500 - 800)) + 800),
-  (Math.floor(Math.random() * 700 - 0) + 0)
+  (Math.floor(Math.random() * (document.getElementById("area").offsetWidth - ((document.getElementById("area").offsetWidth/2)+50))) + ((document.getElementById("area").offsetWidth/2)+50)),
+  (Math.floor(Math.random() * (document.getElementById("area").offsetHeight - 0)) + 0)
 );
 
 //Fisicas Bala -- Listo
@@ -157,9 +164,10 @@ function verificarSiJugadorMuere(jugador) {
     juego = false;
     limpiarBalas()
     console.log(`${jugador.getName()} ha sido eliminado.`);
-    mostrarExplosion(jugador.x, jugador.y);
+    mostrarExplosion(`${jugador.getX()}`, `${jugador.getY()}`);
     setTimeout(() => {
       alert(`${jugador.getName()} Ha Muerto.`);
+      window.location.href = "../index.html";
     }, 1750);
   }
 }
@@ -216,16 +224,17 @@ const keys = {};
 function update() {
   if (!juego) return;
 
-  if (keys["w"] && player1Pos.y > 0) {
+  if (keys["w"] && player1Pos.y > 13) {
     player1Pos.y -= playerSpeed;
   }
-  if (keys["s"] && player1Pos.y < 700) {
+  if (keys["s"] && player1Pos.y < (document.getElementById("area").offsetHeight - 13)) {
+    console.log(`${player1.getY()}`);
     player1Pos.y += playerSpeed;
   }
   if (keys["a"] && player1Pos.x > 0) {
     player1Pos.x -= playerSpeed;
   }
-  if (keys["d"] && player1Pos.x < 650) {
+  if (keys["d"] && player1Pos.x < ((document.getElementById("area").offsetWidth/2)-49)) {
     player1Pos.x += playerSpeed;
   }
   if (keys["f"]) {
@@ -238,13 +247,13 @@ function update() {
   if (keys["i"] && player2Pos.y > 0) {
     player2Pos.y -= playerSpeed;
   }
-  if (keys["k"] && player2Pos.y < window.innerHeight - 52) {
+  if (keys["k"] && player2Pos.y < (document.getElementById("area").offsetHeight - 13)) {
     player2Pos.y += playerSpeed;
   }
-  if (keys["j"] && player2Pos.x > 800) {
+  if (keys["j"] && player2Pos.x > ((document.getElementById("area").offsetWidth/2)+51)) {
     player2Pos.x -= playerSpeed;
   }
-  if (keys["l"] && player2Pos.x < window.innerWidth - 52) {
+  if (keys["l"] && player2Pos.x < (document.getElementById("area").offsetWidth - 52)) {
     player2Pos.x += playerSpeed;
   }
   if (keys["h"]) {
