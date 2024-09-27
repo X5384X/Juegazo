@@ -7,6 +7,10 @@ musica.play();
 
 const player1Name = localStorage.getItem("player1Name");
 const player2Name = localStorage.getItem("player2Name");
+
+document.querySelector(".player-1 .name").textContent = player1Name;
+document.querySelector(".player-2 .name").textContent = player2Name;
+
 const player1Character = localStorage.getItem("player1Character");
 const player2Character = localStorage.getItem("player2Character");
 
@@ -92,6 +96,9 @@ const player2 = new Player(
   Number(area.offsetWidth - Number(area.offsetWidth / 10)) - 25,
   Number(area.offsetHeight / 2) - 25
 );
+
+document.querySelector(".player-1 .hp").textContent = `${player1.health}/${player1.maxhealth}`;
+document.querySelector(".player-2 .hp").textContent = `${player2.health}/${player2.maxhealth}`;
 
 //Fisicas Bala -- Listo
 
