@@ -5,26 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
   </head>
   <body>
     <main></main>
 
     <div class="container">
-      <div class="selection player1">
-        <div class="character-selection">
-          <img src="img/commando.png" alt="" />
+      <div class="character-container">
+        <div class="selection player1">
+          <section class="selector">
+            <i id="prev" class="fa-solid fa-arrow-left button"></i>
+            <div class="character-showcase carousel">
+              <img src="img/commando.png" alt="" />
+              <img src="img/commando2.png" alt="" />
+              <img src="img/commando.png" alt="" />
+            </div>
+            <i id="next" class="fa-solid fa-arrow-right button"></i>
+          </section>
+          <label for="">Player 1</label>
+          <input id="player1-name" class="name-input" type="text" value="" />
         </div>
-        <label for="">Player 1</label>
-        <input id="player1-name" class="name-input" type="text" value="" />
-      </div>
-      <div class="selection player2">
-        <div class="character-selection">
-          <img src="img/commando2.png" alt="" />
+        <div class="selection player2">
+          <section class="character-selection">
+            <i id="prev" class="fa-solid fa-arrow-left button"></i>
+            <div class="character-showcase carousel">
+              <img src="img/commando2.png" alt="" />
+              <img src="img/commando.png" alt="" />
+              <img src="img/commando2.png" alt="" />
+            </div>
+            <i id="next" class="fa-solid fa-arrow-right button"></i>
+          </section>
+          <label for="">Player 2</label>
+          <input id="player2-name" class="name-input" type="text" />
         </div>
-        <label for="">Player 2</label>
-        <input id="player2-name" class="name-input" type="text" />
       </div>
+      <button type="submit" onclick="location.href='juego.html'">
+        Start playing!
+      </button>
     </div>
-    <script src="./js/solucion_ejercicio_2.js"></script>
+
+    <script src="./js/index.js"></script>
   </body>
 </html>

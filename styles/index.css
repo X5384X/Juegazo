@@ -5,27 +5,90 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   position: relative;
 }
 
 .container {
   display: flex;
-  width: 50%;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  padding: 20px;
+}
+
+.character-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 30px;
 }
 
 .selection {
   display: flex;
-  flex-direction: column;
-}
-
-.character-selection {
-  display: flex;
   margin-bottom: 50px;
   justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  max-width: 350px;
+  max-height: 150px;
   align-items: center;
+  position: relative;
+  border-radius: 12px;
+  align-items: center;
+}
+
+.selection i.button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 72px;
+  width: 72px;
+  text-align: center;
+  line-height: 36px;
+  color: #fff;
+  font-size: 25px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+i#prev {
+  left: 25px;
+}
+i#next {
+  right: 25px;
+}
+
+.character-showcase {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  width: 200px;
+  position: relative;
+}
+
+.character-showcase .carousel {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel img {
+  display: flex;
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 10px solid #1d1d1d;
 }
 
 label {
@@ -37,7 +100,21 @@ label {
 
 .name-input {
   width: 220px;
-  height: 25px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
   font-size: 1em;
+  text-align: center;
+}
+
+button {
+  display: flex;
+  flex-direction: column;
+  background-color: #bbeff4;
+  border: none;
+  border-radius: 20px;
+  width: 150px;
+  height: 30px;
+  justify-content: center;
   text-align: center;
 }
