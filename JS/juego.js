@@ -53,15 +53,15 @@ const player1 = new Player(
   "Jugador 1",
   150,
   5,
-  100,
-  320
+  Number(area.offsetWidth/10)-25,
+  Number(area.offsetHeight/2)-25
 );
 const player2 = new Player(
   "Jugador 2",
   150,
   5,
-  1300,
-  320
+  Number(area.offsetWidth - Number(area.offsetWidth/10))-25,
+  Number(area.offsetHeight/2)-25
 );
 
 //Fisicas Bala -- Listo
@@ -153,10 +153,10 @@ function mostrarExplosion(posX, posY) {
   const explosion = document.createElement("img");
   explosion.src = "../img/explosion.gif";
   explosion.classList.add("explosion");
-  explosion.style.position = "absolute";
-  explosion.style.left = posX + "px";
-  explosion.style.top = posY + "px";
-  document.querySelector(".game-area").appendChild(explosion);
+  explosion.style.position = "fixed";
+  explosion.style.left = posX-56 + "px";
+  explosion.style.top = posY-63 + "px";
+  document.querySelector(".game").appendChild(explosion);
 
   explosionSFX.currentTime = 0;
   explosionSFX.play();
@@ -178,7 +178,7 @@ function verificarSiJugadorMuere(jugador) {
     juego = false;
     limpiarBalas()
     console.log(`${jugador.getName()} ha sido eliminado.`);
-    mostrarExplosion(`${jugador.getX()}`, `${jugador.getY()}`);
+    mostrarExplosion(Number(`${jugador.getX()}`), Number(`${jugador.getY()}`));
     setTimeout(() => {
       alert(`${jugador.getName()} Ha Muerto.`);
       window.location.href = "../index.html";
@@ -193,28 +193,26 @@ function actualizarBala() {
     balaObj.bala.mover();
     balaObj.element.style.left = balaObj.bala.x + "px";
 
-    // Verificar colisión con el jugador 1 (con la posición actual)
     if (verificarColision(balaObj.bala, player1Pos)) {
       balaObj.element.remove();
       balas.splice(index, 1);
-      player1.health -= player2.damage; // Usar el daño del jugador 2
+      player1.health -= player2.damage;
       actualizarHUD(player1, "p1-health-bar", "p1-health-value");
+      verificarSiJugadorMuere(player1);
       impactoSFX.currentTime = 0;
       impactoSFX.play();
       console.log(`¡${player1.getName()} recibió un disparo! HP restante: ${player1.health}`);
-      verificarSiJugadorMuere(player1); // Verificar si el jugador 1 ha muerto
     }
 
-    // Verificar colisión con el jugador 2 (con la posición actual)
     if (verificarColision(balaObj.bala, player2Pos)) {
       balaObj.element.remove();
       balas.splice(index, 1);
-      player2.health -= player1.damage; // Usar el daño del jugador 1
+      player2.health -= player1.damage;
       actualizarHUD(player2, "p2-health-bar", "p2-health-value");
+      verificarSiJugadorMuere(player2);
       impactoSFX.currentTime = 0;
       impactoSFX.play();
       console.log(`¡${player2.getName()} recibió un disparo! HP restante: ${player2.health}`);
-      verificarSiJugadorMuere(player2); // Verificar si el jugador 2 ha muerto
     }
 
     // Elimina la bala si sale del área de juego
@@ -231,8 +229,8 @@ const playerSpeed = 5;
 const player_1 = document.getElementById("player-1");
 const player_2 = document.getElementById("player-2");
 
-let player1Pos = { x: `${player1.getX()}`, y: `${player1.getY()}` };
-let player2Pos = { x: `${player2.getX()}`, y: `${player2.getY()}` };
+let player1Pos = { x: Number(`${player1.getX()}`), y: Number(`${player1.getY()}`) };
+let player2Pos = { x: Number(`${player2.getX()}`), y: Number(`${player2.getY()}`) };
 
 // Handlers
 const keys = {};
@@ -242,16 +240,19 @@ function update() {
 
   if (keys["w"] && player1Pos.y > 0) {
     player1Pos.y -= playerSpeed;
+    player1.setY(player1Pos.y);
   }
   if (keys["s"] && player1Pos.y < (document.getElementById("area").offsetHeight - 52)) {
-    console.log(`${player1.getY()}`);
     player1Pos.y += playerSpeed;
+    player1.setY(player1Pos.y);
   }
   if (keys["a"] && player1Pos.x > 0) {
     player1Pos.x -= playerSpeed;
+    player1.setX(player1Pos.x);
   }
   if (keys["d"] && player1Pos.x < ((document.getElementById("area").offsetWidth/2)-60)) {
     player1Pos.x += playerSpeed;
+    player1.setX(player1Pos.x);
   }
   if (keys["f"]) {
     player1.setX(player1Pos.x);
@@ -262,15 +263,19 @@ function update() {
 
   if (keys["i"] && player2Pos.y > 0) {
     player2Pos.y -= playerSpeed;
+    player2.setY(player2Pos.y);
   }
   if (keys["k"] && player2Pos.y < (document.getElementById("area").offsetHeight - 52)) {
     player2Pos.y += playerSpeed;
+    player2.setY(player2Pos.y);
   }
   if (keys["j"] && player2Pos.x > ((document.getElementById("area").offsetWidth/2)+10)) {
     player2Pos.x -= playerSpeed;
+    player2.setX(player2Pos.x);
   }
   if (keys["l"] && player2Pos.x < (document.getElementById("area").offsetWidth - 52)) {
     player2Pos.x += playerSpeed;
+    player2.setX(player2Pos.x);
   }
   if (keys["h"]) {
     player2.setX(player2Pos.x);
