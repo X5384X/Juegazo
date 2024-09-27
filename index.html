@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h2>Fight!</h2>
-    <main>
-    
-    </main>
-    <!--Controles y otras consideraciones
-  
-    Jugador 1
-    - WASD movimiento + F para disparar
-    Jugador 2
-    - IJKL movimiento + H para disparar
-  
-    Barras de vidas deberán estar en los costados, siguiendo un estilo similar a juegos de lucha, como SF
-    -->
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+  <body>
+    <main></main>
+
+    <div class="container">
+      <div class="selection player1">
+        <div class="character-selection">
+          <img src="img/commando.png" alt="" />
+        </div>
+        <label for="">Player 1</label>
+        <input id="player1-name" class="name-input" type="text" value="" />
+      </div>
+      <div class="selection player2">
+        <div class="character-selection">
+          <img src="img/commando2.png" alt="" />
+        </div>
+        <label for="">Player 2</label>
+        <input id="player2-name" class="name-input" type="text" />
+      </div>
+    </div>
     <script src="./js/solucion_ejercicio_2.js"></script>
-</body>
+  </body>
 </html>
