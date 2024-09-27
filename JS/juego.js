@@ -238,9 +238,7 @@ function actualizarBala() {
       impactoSFX.currentTime = 0;
       impactoSFX.play();
       console.log(
-        `¡${player1.getName()} recibió un disparo! HP restante: ${
-          player1.health
-        }`
+        `${player1.getName()} recibió un disparo. HP restante: ${player1.health}`
       );
     }
 
@@ -253,9 +251,7 @@ function actualizarBala() {
       impactoSFX.currentTime = 0;
       impactoSFX.play();
       console.log(
-        `¡${player2.getName()} recibió un disparo! HP restante: ${
-          player2.health
-        }`
+        `${player2.getName()} recibió un disparo. HP restante: ${player2.health}`
       );
     }
 
@@ -387,5 +383,3 @@ function reproducir() {
   const music = document.getElementById("musica");
   music.play();
 }
-/*document.getElementById("nombre-p1").innerHTML = player1.getName();
-document.getElementById("nombre-p2").innerHTML = player2.getName(); */
