@@ -46,15 +46,15 @@ const player1 = new Player(
   "Jugador 1",
   150,
   5,
-  Math.floor(Math.random() * 300),
-  Math.floor(Math.random() * 300)
+  (Math.floor(Math.random() * (700 - 0)) + 0),
+  (Math.floor(Math.random() * (700 - 0)) + 0)
 );
 const player2 = new Player(
   "Jugador 2",
   150,
   5,
-  Math.floor(Math.random() * 300),
-  Math.floor(Math.random() * 300)
+  (Math.floor(Math.random() * (1500 - 800)) + 800),
+  (Math.floor(Math.random() * 700 - 0) + 0)
 );
 
 //Fisicas Bala -- Listo
@@ -86,8 +86,7 @@ class Bullet {
 //Mecanica de Disparo -- En Progreso
 
 let balas = [];
-const shotCooldown = 250; //cuanto tiempo en milisegundos pasa para que se muestre otra bala
-// Inicialización de variables para control de tiempo de disparo
+const shotCooldown = 333; //cuanto tiempo en milisegundos pasa para que se muestre otra bala
 let ultimoDisparoP1 = 0;
 let ultimoDisparoP2 = 0;
 
@@ -208,8 +207,8 @@ const playerSpeed = 5;
 const player_1 = document.getElementById("player-1");
 const player_2 = document.getElementById("player-2");
 
-let player1Pos = { x: 100, y: 320 };
-let player2Pos = { x: 1300, y: 320 };
+let player1Pos = { x: `${player1.getX()}`, y: `${player1.getY()}` };
+let player2Pos = { x: `${player2.getX()}`, y: `${player2.getY()}` };
 
 // Handlers
 const keys = {};
@@ -226,7 +225,7 @@ function update() {
   if (keys["a"] && player1Pos.x > 0) {
     player1Pos.x -= playerSpeed;
   }
-  if (keys["d"] && player1Pos.x < 1450) {
+  if (keys["d"] && player1Pos.x < 650) {
     player1Pos.x += playerSpeed;
   }
   if (keys["f"]) {
@@ -242,7 +241,7 @@ function update() {
   if (keys["k"] && player2Pos.y < window.innerHeight - 52) {
     player2Pos.y += playerSpeed;
   }
-  if (keys["j"] && player2Pos.x > 0) {
+  if (keys["j"] && player2Pos.x > 800) {
     player2Pos.x -= playerSpeed;
   }
   if (keys["l"] && player2Pos.x < window.innerWidth - 52) {
