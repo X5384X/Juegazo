@@ -75,3 +75,9 @@
   left: 100px;
   top: 150px;
 }
+
+.bala{
+  width: 12px;
+  height: 5px;
+  position: absolute;
+}
