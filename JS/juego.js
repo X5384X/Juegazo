@@ -13,8 +13,26 @@ const player2Character = localStorage.getItem("player2Character");
 console.log(`Player 1: ${player1Name}, Character: ${player1Character}`);
 console.log(`Player 2: ${player2Name}, Character: ${player2Character}`);
 
-// Call the initialization function when your game script runs
-initializeGame();
+const player1Image =
+  player1Character === "commando"
+    ? "img/commando.png"
+    : player1Character === "marco"
+    ? "img/marco.png"
+    : "img/tarma.png";
+
+const player2Image =
+  player2Character === "commando2"
+    ? "img/commando2.png"
+    : player2Character === "marco2"
+    ? "img/marco2.png"
+    : "img/tarma2.png";
+
+document.getElementById(
+  "player-1"
+).style.backgroundImage = `url(${player1Image})`;
+document.getElementById(
+  "player-2"
+).style.backgroundImage = `url(${player2Image})`; // Optional: to ensure the image fits
 
 //Objeto Jugador -- Listo
 class Player {
@@ -61,18 +79,18 @@ class Player {
 const area = document.getElementById("area");
 console.log(document.getElementById("area").offsetWidth);
 const player1 = new Player(
-  "Jugador 1",
+  player1Name,
   150,
   5,
-  Number(area.offsetWidth/10)-25,
-  Number(area.offsetHeight/2)-25
+  Number(area.offsetWidth / 10) - 25,
+  Number(area.offsetHeight / 2) - 25
 );
 const player2 = new Player(
-  "Jugador 2",
+  player2Name,
   150,
   5,
-  Number(area.offsetWidth - Number(area.offsetWidth/10))-25,
-  Number(area.offsetHeight/2)-25
+  Number(area.offsetWidth - Number(area.offsetWidth / 10)) - 25,
+  Number(area.offsetHeight / 2) - 25
 );
 
 //Fisicas Bala -- Listo
@@ -165,8 +183,8 @@ function mostrarExplosion(posX, posY) {
   explosion.src = "../img/explosion.gif";
   explosion.classList.add("explosion");
   explosion.style.position = "fixed";
-  explosion.style.left = posX-56 + "px";
-  explosion.style.top = posY-63 + "px";
+  explosion.style.left = posX - 56 + "px";
+  explosion.style.top = posY - 63 + "px";
   document.querySelector(".game").appendChild(explosion);
 
   explosionSFX.currentTime = 0;
@@ -212,7 +230,11 @@ function actualizarBala() {
       verificarSiJugadorMuere(player1);
       impactoSFX.currentTime = 0;
       impactoSFX.play();
-      console.log(`¡${player1.getName()} recibió un disparo! HP restante: ${player1.health}`);
+      console.log(
+        `¡${player1.getName()} recibió un disparo! HP restante: ${
+          player1.health
+        }`
+      );
     }
 
     if (verificarColision(balaObj.bala, player2Pos)) {
@@ -223,7 +245,11 @@ function actualizarBala() {
       verificarSiJugadorMuere(player2);
       impactoSFX.currentTime = 0;
       impactoSFX.play();
-      console.log(`¡${player2.getName()} recibió un disparo! HP restante: ${player2.health}`);
+      console.log(
+        `¡${player2.getName()} recibió un disparo! HP restante: ${
+          player2.health
+        }`
+      );
     }
 
     // Elimina la bala si sale del área de juego
@@ -240,8 +266,14 @@ const playerSpeed = 5;
 const player_1 = document.getElementById("player-1");
 const player_2 = document.getElementById("player-2");
 
-let player1Pos = { x: Number(`${player1.getX()}`), y: Number(`${player1.getY()}`) };
-let player2Pos = { x: Number(`${player2.getX()}`), y: Number(`${player2.getY()}`) };
+let player1Pos = {
+  x: Number(`${player1.getX()}`),
+  y: Number(`${player1.getY()}`),
+};
+let player2Pos = {
+  x: Number(`${player2.getX()}`),
+  y: Number(`${player2.getY()}`),
+};
 
 // Handlers
 const keys = {};
@@ -253,7 +285,10 @@ function update() {
     player1Pos.y -= playerSpeed;
     player1.setY(player1Pos.y);
   }
-  if (keys["s"] && player1Pos.y < (document.getElementById("area").offsetHeight - 52)) {
+  if (
+    keys["s"] &&
+    player1Pos.y < document.getElementById("area").offsetHeight - 52
+  ) {
     player1Pos.y += playerSpeed;
     player1.setY(player1Pos.y);
   }
