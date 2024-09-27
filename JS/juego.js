@@ -53,15 +53,15 @@ const player1 = new Player(
   "Jugador 1",
   150,
   5,
-  (Math.floor(Math.random() * (((document.getElementById("area").offsetWidth/2)-50) - 0)) + 0),
-  (Math.floor(Math.random() * (document.getElementById("area").offsetHeight - 0)) + 0)
+  100,
+  320
 );
 const player2 = new Player(
   "Jugador 2",
   150,
   5,
-  (Math.floor(Math.random() * (document.getElementById("area").offsetWidth - ((document.getElementById("area").offsetWidth/2)+50))) + ((document.getElementById("area").offsetWidth/2)+50)),
-  (Math.floor(Math.random() * (document.getElementById("area").offsetHeight - 0)) + 0)
+  1300,
+  320
 );
 
 //Fisicas Bala -- Listo
@@ -85,9 +85,23 @@ class Bullet {
     bala.classList.add("bala");
     bala.style.left = this.x + "px";
     bala.style.top = this.y + "px";
-    document.querySelector(".game-area").appendChild(bala);
+    document.querySelector(".game").appendChild(bala);
     return bala;
   }
+}
+
+function actualizarHUD(player, healthBarId, healthTextId) {
+  const healthBar = document.getElementById(healthBarId);
+  const healthText = document.getElementById(healthTextId);
+
+  // Calcula el porcentaje de vida restante
+  const healthPercentage = (player.health / player.maxhealth) * 100;
+
+  // Actualiza el ancho de la barra de vida
+  healthBar.style.width = healthPercentage + "%";
+
+  // Actualiza el texto de vida
+  healthText.innerHTML = `${player.health}/${player.maxhealth}`;
 }
 
 //Mecanica de Disparo -- En Progreso
@@ -184,6 +198,7 @@ function actualizarBala() {
       balaObj.element.remove();
       balas.splice(index, 1);
       player1.health -= player2.damage; // Usar el daño del jugador 2
+      actualizarHUD(player1, "p1-health-bar", "p1-health-value");
       impactoSFX.currentTime = 0;
       impactoSFX.play();
       console.log(`¡${player1.getName()} recibió un disparo! HP restante: ${player1.health}`);
@@ -195,6 +210,7 @@ function actualizarBala() {
       balaObj.element.remove();
       balas.splice(index, 1);
       player2.health -= player1.damage; // Usar el daño del jugador 1
+      actualizarHUD(player2, "p2-health-bar", "p2-health-value");
       impactoSFX.currentTime = 0;
       impactoSFX.play();
       console.log(`¡${player2.getName()} recibió un disparo! HP restante: ${player2.health}`);
@@ -224,17 +240,17 @@ const keys = {};
 function update() {
   if (!juego) return;
 
-  if (keys["w"] && player1Pos.y > 13) {
+  if (keys["w"] && player1Pos.y > 0) {
     player1Pos.y -= playerSpeed;
   }
-  if (keys["s"] && player1Pos.y < (document.getElementById("area").offsetHeight - 13)) {
+  if (keys["s"] && player1Pos.y < (document.getElementById("area").offsetHeight - 52)) {
     console.log(`${player1.getY()}`);
     player1Pos.y += playerSpeed;
   }
   if (keys["a"] && player1Pos.x > 0) {
     player1Pos.x -= playerSpeed;
   }
-  if (keys["d"] && player1Pos.x < ((document.getElementById("area").offsetWidth/2)-49)) {
+  if (keys["d"] && player1Pos.x < ((document.getElementById("area").offsetWidth/2)-60)) {
     player1Pos.x += playerSpeed;
   }
   if (keys["f"]) {
@@ -247,10 +263,10 @@ function update() {
   if (keys["i"] && player2Pos.y > 0) {
     player2Pos.y -= playerSpeed;
   }
-  if (keys["k"] && player2Pos.y < (document.getElementById("area").offsetHeight - 13)) {
+  if (keys["k"] && player2Pos.y < (document.getElementById("area").offsetHeight - 52)) {
     player2Pos.y += playerSpeed;
   }
-  if (keys["j"] && player2Pos.x > ((document.getElementById("area").offsetWidth/2)+51)) {
+  if (keys["j"] && player2Pos.x > ((document.getElementById("area").offsetWidth/2)+10)) {
     player2Pos.x -= playerSpeed;
   }
   if (keys["l"] && player2Pos.x < (document.getElementById("area").offsetWidth - 52)) {
