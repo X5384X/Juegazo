@@ -1,0 +1,123 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1d1d1d;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  padding: 20px;
+}
+
+.character-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 30px;
+}
+
+.wrapper i.button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+  color: #fff;
+  font-size: 15px;
+
+  z-index: 100;
+  cursor: pointer;
+}
+
+i#prev {
+  left: 25px;
+}
+i#next {
+  right: 25px;
+}
+
+.character-showcase {
+  display: flex;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.wrapper {
+  display: flex;
+  max-width: 200px;
+  width: 100%;
+  height: 400px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+  height: 320px;
+  max-width: 500px;
+  width: 100%;
+  justify-content: center;
+  overflow: hidden;
+}
+.image-container .carousel {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: all 0.4s ease;
+}
+
+.carousel img {
+  min-width: 200px; /* Each image takes up 200px width */
+  height: 200px; /* Ensure consistent height for the images */
+  object-fit: cover;
+  justify-self: center;
+  border: 15px;
+}
+
+label {
+  margin: 10px;
+  font-size: 1em;
+  align-items: center;
+  align-self: center;
+}
+
+.name-input {
+  width: 220px;
+  height: 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  text-align: center;
+}
+
+button {
+  display: flex;
+  flex-direction: column;
+  background-color: #bbeff4;
+  border: none;
+  border-radius: 20px;
+  width: 150px;
+  height: 30px;
+  justify-content: center;
+  text-align: center;
+}

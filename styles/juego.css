@@ -1,39 +1,108 @@
-body{
-
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.grid-container{
-    display: grid;
-    width: 100%;
-    .health-bars{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        .info{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        progress{
-            background: red;
-        }
-        .p1-health{
-            width: 100%;
-        }
-        .p2-health{
-            width: 100%;
-        }
-    }
-    .field{
-        display: flex;
-        justify-content: space-between;
-        padding: 40px 100px 0px;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1d1d1d;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
 
-        .player{
-            display: flex;
-            row-gap: 20px;
-            flex-direction: column;
-        }
-    }
+.health-container {
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 10px;
+  padding: 0 30px;
+}
+
+.info.player-1 {
+  align-items: flex-start;
+}
+
+.info.player-2 {
+  align-items: flex-end;
+}
+
+.health-bar {
+  width: 300px;
+  height: 20px;
+  background-color: #555;
+  border: white;
+  transform: skew(-20deg);
+}
+
+.health {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(76, 221, 76);
+  transition: width 0.3s ease-in-out;
+}
+
+.hp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-weight: bold;
+}
+
+.game {
+  position: relative;
+  min-width: 340px;
+  min-height: 140px;
+  width: 95%;
+  height: 80%;
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.player {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-size: cover;
+}
+
+#player-1 {
+  left: 100px;
+  top: 150px;
+  background-image: url("../img/marco.png");
+}
+
+#player-2 {
+  left: 100px;
+  top: 150px;
+  background-image: url("../img/commando2.png");
+}
+
+.bala{
+  width: 12px;
+  height: 5px;
+  position: absolute;
 }

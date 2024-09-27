@@ -1,22 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editing</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
   </head>
-
   <body>
-    <h2>Fight!</h2>
-    <!--Controles y otras consideraciones
+    <main></main>
 
-    Jugador 1
-    - WASD movimiento + F para disparar
-    Jugador 2
-    - IJKL movimiento + H para disparar
+    <div class="container">
+      <div class="character-container">
+        <div class="selection player1">
+          <section class="wrapper">
+            <i class="fa-solid fa-arrow-left button" id="prev"></i>
+            <div class="image-container">
+              <div class="carousel">
+                <img src="img/commando.png" alt="" />
+                <img src="img/marco.png" alt="" />
+                <img src="img/tarma.png" alt="" />
+              </div>
+              <i class="fa-solid fa-arrow-right button" id="next"></i>
+            </div>
+          </section>
+          <label for="">Player 1</label>
+          <input id="player1-name" class="name-input" type="text" value="" />
+        </div>
+        <div class="selection player2">
+          <section class="wrapper">
+            <i class="fa-solid fa-arrow-left button" id="prev"></i>
+            <div class="image-container">
+              <div class="carousel">
+                <img src="img/commando2.png" alt="" />
+                <img src="img/marco2.png" alt="" />
+                <img src="img/tarma2.png" alt="" />
+              </div>
+              <i class="fa-solid fa-arrow-right button" id="next"></i>
+            </div>
+          </section>
+          <label for="">Player 2</label>
+          <input id="player2-name" class="name-input" type="text" />
+        </div>
+      </div>
+      <button type="submit" onclick="location.href='juego.html'">
+        Start playing!
+      </button>
+    </div>
 
-    Barras de vidas deberán estar en los costados, siguiendo un estilo similar a juegos de lucha, como SF
-    -->
-    <script src="./js/solucion_ejercicio_2.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>
