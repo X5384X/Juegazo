@@ -5,6 +5,17 @@ musica.currentTime = 0;
 musica.volume = 0.7;
 musica.play();
 
+const player1Name = localStorage.getItem("player1Name");
+const player2Name = localStorage.getItem("player2Name");
+const player1Character = localStorage.getItem("player1Character");
+const player2Character = localStorage.getItem("player2Character");
+
+console.log(`Player 1: ${player1Name}, Character: ${player1Character}`);
+console.log(`Player 2: ${player2Name}, Character: ${player2Character}`);
+
+// Call the initialization function when your game script runs
+initializeGame();
+
 //Objeto Jugador -- Listo
 class Player {
   constructor(name, health, damage, posX, posY) {
@@ -49,20 +60,8 @@ class Player {
 }
 const area = document.getElementById("area");
 console.log(document.getElementById("area").offsetWidth);
-const player1 = new Player(
-  "Jugador 1",
-  150,
-  5,
-  100,
-  320
-);
-const player2 = new Player(
-  "Jugador 2",
-  150,
-  5,
-  1300,
-  320
-);
+const player1 = new Player(player1Name, 150, 5, 100, 320);
+const player2 = new Player(player2Name, 150, 5, 1300, 320);
 
 //Fisicas Bala -- Listo
 
@@ -128,7 +127,7 @@ function disparo(player, direccion, sprite, ultimoDisparo) {
     balas.push({ bala, element: balaDisparada });
 
     // Actualizar el tiempo del último disparo
-    return tiempoActual; 
+    return tiempoActual;
   }
 
   // Si no dispara, mantener el tiempo de último disparo sin cambios
@@ -147,7 +146,7 @@ function verificarColision(bala, jugador) {
   );
 }
 
-const explosionSFX = new Audio("../audio/explosion.ogg")
+const explosionSFX = new Audio("../audio/explosion.ogg");
 
 function mostrarExplosion(posX, posY) {
   const explosion = document.createElement("img");
@@ -176,7 +175,7 @@ function limpiarBalas() {
 function verificarSiJugadorMuere(jugador) {
   if (!jugador.isAlive()) {
     juego = false;
-    limpiarBalas()
+    limpiarBalas();
     console.log(`${jugador.getName()} ha sido eliminado.`);
     mostrarExplosion(`${jugador.getX()}`, `${jugador.getY()}`);
     setTimeout(() => {
@@ -201,7 +200,11 @@ function actualizarBala() {
       actualizarHUD(player1, "p1-health-bar", "p1-health-value");
       impactoSFX.currentTime = 0;
       impactoSFX.play();
-      console.log(`¡${player1.getName()} recibió un disparo! HP restante: ${player1.health}`);
+      console.log(
+        `¡${player1.getName()} recibió un disparo! HP restante: ${
+          player1.health
+        }`
+      );
       verificarSiJugadorMuere(player1); // Verificar si el jugador 1 ha muerto
     }
 
@@ -213,7 +216,11 @@ function actualizarBala() {
       actualizarHUD(player2, "p2-health-bar", "p2-health-value");
       impactoSFX.currentTime = 0;
       impactoSFX.play();
-      console.log(`¡${player2.getName()} recibió un disparo! HP restante: ${player2.health}`);
+      console.log(
+        `¡${player2.getName()} recibió un disparo! HP restante: ${
+          player2.health
+        }`
+      );
       verificarSiJugadorMuere(player2); // Verificar si el jugador 2 ha muerto
     }
 
@@ -243,40 +250,65 @@ function update() {
   if (keys["w"] && player1Pos.y > 0) {
     player1Pos.y -= playerSpeed;
   }
-  if (keys["s"] && player1Pos.y < (document.getElementById("area").offsetHeight - 52)) {
+  if (
+    keys["s"] &&
+    player1Pos.y < document.getElementById("area").offsetHeight - 52
+  ) {
     console.log(`${player1.getY()}`);
     player1Pos.y += playerSpeed;
   }
   if (keys["a"] && player1Pos.x > 0) {
     player1Pos.x -= playerSpeed;
   }
-  if (keys["d"] && player1Pos.x < ((document.getElementById("area").offsetWidth/2)-60)) {
+  if (
+    keys["d"] &&
+    player1Pos.x < document.getElementById("area").offsetWidth / 2 - 60
+  ) {
     player1Pos.x += playerSpeed;
   }
   if (keys["f"]) {
     player1.setX(player1Pos.x);
     player1.setY(player1Pos.y);
     // Aquí actualizamos el tiempo de disparo del jugador 1
-    ultimoDisparoP1 = disparo(player1, 1, "../img/BulletP1.png", ultimoDisparoP1);
+    ultimoDisparoP1 = disparo(
+      player1,
+      1,
+      "../img/BulletP1.png",
+      ultimoDisparoP1
+    );
   }
 
   if (keys["i"] && player2Pos.y > 0) {
     player2Pos.y -= playerSpeed;
   }
-  if (keys["k"] && player2Pos.y < (document.getElementById("area").offsetHeight - 52)) {
+  if (
+    keys["k"] &&
+    player2Pos.y < document.getElementById("area").offsetHeight - 52
+  ) {
     player2Pos.y += playerSpeed;
   }
-  if (keys["j"] && player2Pos.x > ((document.getElementById("area").offsetWidth/2)+10)) {
+  if (
+    keys["j"] &&
+    player2Pos.x > document.getElementById("area").offsetWidth / 2 + 10
+  ) {
     player2Pos.x -= playerSpeed;
   }
-  if (keys["l"] && player2Pos.x < (document.getElementById("area").offsetWidth - 52)) {
+  if (
+    keys["l"] &&
+    player2Pos.x < document.getElementById("area").offsetWidth - 52
+  ) {
     player2Pos.x += playerSpeed;
   }
   if (keys["h"]) {
     player2.setX(player2Pos.x);
     player2.setY(player2Pos.y);
     // Aquí actualizamos el tiempo de disparo del jugador 2
-    ultimoDisparoP2 = disparo(player2, -1, "../img/BulletP2.png", ultimoDisparoP2);
+    ultimoDisparoP2 = disparo(
+      player2,
+      -1,
+      "../img/BulletP2.png",
+      ultimoDisparoP2
+    );
   }
 
   player_1.style.left = `${player1Pos.x}px`;
